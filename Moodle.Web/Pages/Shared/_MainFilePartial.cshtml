@@ -1,0 +1,22 @@
+﻿@using Moodle.Core.Interfaces.Services
+@using Microsoft.AspNetCore.Hosting
+@inject IMainFileService FileService
+@inject IWebHostEnvironment WebHostEnvironment
+
+@{
+    var fileNames = FileService.GetMainFiles(WebHostEnvironment.WebRootPath).ToList();
+    var types = FileService.PickExtensions(fileNames).ToList();
+    var files = (from fileName in fileNames
+        let fileNameWithoutExtension = fileName.Substring(0, fileName.LastIndexOf(".", StringComparison.Ordinal))
+        let path = @"files\mainFiles\" + fileName
+        select new MainFileModel(path, fileNameWithoutExtension)).ToList();
+    var i = 0;
+}
+
+<div>
+    @foreach (var file in files)
+    {
+        <img src="@types[i++]" alt="file extension">
+        <a href="@file.Path">@file.FileName</a>
+    }
+</div>

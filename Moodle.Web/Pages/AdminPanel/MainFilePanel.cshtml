@@ -1,0 +1,28 @@
+﻿@page
+@model MainFilePanel
+
+<form method="post" asp-page-handler="create" enctype="multipart/form-data">
+    <label asp-for="FormFiles">Files</label>
+    <input type="file" asp-for="FormFiles" multiple>
+    <span asp-validation-for="FormFiles"></span>
+    <input type="submit">
+    <div asp-validation-summary="All"></div>
+</form>
+
+<div>
+    
+    @{
+        var i = 0;
+    foreach (var file in Model.Files)
+    {
+
+        var path = "../../" + file.Path;
+        <img src="@Model.Types[i++]" alt="file extension">
+        <a href="@path">@file.FileName</a>
+        <form method="post">
+            <button asp-page-handler="delete">Delete</button>
+            <input type="hidden" name="filePath" value="@file.Path"/>
+        </form>
+    }
+}
+</div>

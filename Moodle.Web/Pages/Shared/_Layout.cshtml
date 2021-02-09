@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/images/ChmnuLogo.jpg" id="logo" alt="logo"/>
+            </div>
+            <div class="nav-container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-page="/home"><span class="fa fa-home"></span><span class="link">Home</span></a></li>
+                        <li>
+                            <a href=""><span class="fa fa-info-circle"></span>
+                                <span
+                                    class="link">About me</span></a></li>
+                        <li><a href=""><span class="fa fa-tasks"></span><span class="link">Abilities</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span class="fa fa-briefcase"></span>
+                                <span
+                                    class="link">Portfolio</span></a></li>
+                        <li><a href=""><span class="fa fa-phone"></span><span class="link">Contacts</span></a></li>
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><img src="@Context.Request.Cookies["FilePath"]" alt="user photo"></li>
+                            <li><a asp-page="/account/logout">Logout</a></li>
+                            <li><a asp-route="/account/user/">Configurations</a></li>
+                            if (User.HasClaim("IsAdmin","True"))
+                            {
+                                <li>Moodle Configurations</li>
+                                <li><a asp-page="/adminPanel/userPanel">User Panel</a></li>
+                                <li><a asp-page="/adminPanel/mainFilePanel">Main File Panel</a></li>
+                                <li><a asp-page="/adminPanel/groupPanel">Group Panel</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div>
+       
+    </div>
+    <div>
+    </div>
+</header>
+@RenderBody()
+</body>
+</html>
+ 
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+      <script src="js/script.js">
+    </script>

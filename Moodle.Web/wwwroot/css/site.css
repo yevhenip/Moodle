@@ -1,0 +1,79 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(to right, #5882fd, #0b27d2);
+}
+
+.navbar-collapse {
+    margin-top: 1.1em;
+}
+
+.navbar .nav li > a, .navbar .navbar-brand {
+    max-height: 2em;
+    width: auto;
+    background: transparent !important;
+    font-size: 1.8em;
+    transition: 0.2s ease-in-out;
+}
+
+.navbar .nav li > a:hover, .navbar .navbar-brand:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar .nav li > a:hover .link, .navbar .navbar-brand:hover .link {
+    padding: 0 .3em 0 .3em;
+    visibility: visible;
+    font-size: .8em;
+}
+
+.navbar .link {
+    transition: 0.2s ease-in-out;
+    visibility: hidden;
+    font-size: 0;
+}
+
+.navbar span {
+    color: white;
+}
+
+.navbar .navbar-toggle {
+    padding-right: 0;
+}
+
+.navbar .navbar-toggle .icon-bar {
+    background: white;
+}
+
+.navbar .navbar-collapse {
+    display: none;
+}
+
+#logo {
+    height: 5em;
+    margin: .4em;
+}
+
+@media (min-width: 750px) {
+    .nav-container {
+        display: flex !important;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar .link {
+        padding-left: .8em;
+        visibility: visible;
+        font-size: 0.6em;
+    }
+
+    .navbar-toggle {
+        margin-top: 1.6em;
+    }
+
+    .navbar .navbar-brand .link {
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,17 @@
+﻿@page "/account/login"
+@model Login
+
+
+<form asp-page="/" method="post">
+    <label asp-for="LoginModel.UserName"></label>
+    <input asp-for="LoginModel.UserName"/>
+    <span asp-validation-for="LoginModel.UserName"></span>
+    <label asp-for="LoginModel.Password"></label>
+    <input asp-for="LoginModel.Password" type="password"/>
+    <label asp-for="LoginModel.RememberMe"></label>
+    <input asp-for="LoginModel.RememberMe"/>
+    <input type="submit">
+    <div asp-validation-summary="All"></div>
+</form>
+
+<partial name="Shared/_MainFilePartial"/>

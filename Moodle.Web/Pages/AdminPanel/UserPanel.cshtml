@@ -1,0 +1,57 @@
+﻿@page "/adminPanel/userPanel"
+@model UserPanel
+
+
+<form method="post" asp-page-handler="create">
+    <label asp-for="CreateUserModel.FullName">Full Name</label>
+    <input asp-for="CreateUserModel.FullName">
+    <span asp-validation-for="CreateUserModel.FullName"></span>
+
+    <label asp-for="CreateUserModel.UserName">User Name</label>
+    <input asp-for="CreateUserModel.UserName">
+    <span asp-validation-for="CreateUserModel.UserName"></span>
+
+    <label asp-for="CreateUserModel.Email"></label>
+    <input type="email" asp-for="CreateUserModel.Email">
+    <span asp-validation-for="CreateUserModel.Email"></span>
+
+    <label asp-for="CreateUserModel.Phone"></label>
+    <input type="tel" asp-for="CreateUserModel.Phone">
+    <span asp-validation-for="CreateUserModel.Phone"></span>
+
+    <label asp-for="CreateUserModel.BirthDate">Birth Date</label>
+    <input type="date" asp-for="CreateUserModel.BirthDate">
+    <span asp-validation-for="CreateUserModel.BirthDate"></span>
+
+    <label asp-for="CreateUserModel.Password"></label>
+    <input type="password" asp-for="CreateUserModel.Password">
+    <span asp-validation-for="CreateUserModel.Password"></span>
+
+    <label asp-for="CreateUserModel.PasswordConfirmed">Password Confirmed</label>
+    <input type="password" asp-for="CreateUserModel.PasswordConfirmed">
+    <span asp-validation-for="CreateUserModel.PasswordConfirmed"></span>
+
+    <select asp-for="CreateUserModel.UserType" asp-items="Model.Items"></select>
+
+    <input type="submit">
+    <div asp-validation-summary="All"></div>
+</form>
+
+@foreach (var user in Model.Users)
+{
+    if (user.UserType == "Admin")
+    {
+        continue;
+    }
+    <div>
+        <span>@user.FullName</span>
+        <span>@user.Email</span>
+        <span>@user.BirthDate</span>
+        <span>@user.BirthDate</span>
+        <span>@user.UserType</span>
+        <form method="post">
+            <button asp-page-handler="delete">Delete</button>
+            <input type="hidden" name="userId" value="@user.Id"/>
+        </form>
+    </div>
+}

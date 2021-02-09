@@ -1,0 +1,66 @@
+﻿@page
+@model GroupPanel
+<form method="post" asp-page-handler="create">
+    <label asp-for="Group.Name">Name</label>
+    <input asp-for="Group.Name">
+    <span asp-validation-for="Group.Name"></span>
+
+    <label asp-for="Group.Class">Class</label>
+    <input asp-for="Group.Class" value="0">
+    <span asp-validation-for="Group.Class"></span>
+
+    @{
+        var isValid = true;
+        if (Model.Students.Count != 0)
+        {
+            <label asp-for="Group.StudentIds">Select Students</label>
+            <select asp-for="Group.StudentIds" asp-items="Model.Students" multiple="multiple"></select>
+            <span asp-validation-for="Group.StudentIds"></span>
+
+            <label asp-for="Group.HeadManId">Select Headman</label>
+            <select asp-for="Group.HeadManId" asp-items="Model.Students"></select>
+            <span asp-validation-for="Group.HeadManId"></span>
+        }
+        else
+        {
+            isValid = false;
+            <p>No availabale students to add</p>
+        }
+
+        if (Model.Teachers.Count != 0)
+        {
+            <label asp-for="Group.SuperVisorId">Select Supervisor</label>
+            <select asp-for="Group.SuperVisorId" asp-items="Model.Teachers"></select>
+        }
+        else
+        {
+            isValid = false;
+            <p>No availabale teachers to add to the supervisor</p>
+        }
+        if (isValid)
+        {
+            <input type="submit">
+        }
+    }
+    <div asp-validation-summary="All"></div>
+</form>
+@foreach (var group in Model.Groups)
+{
+    <h1>@group.Name</h1>
+    <p>@group.Class</p>
+    <p>@group.SuperVisor.FullName</p>
+    <p>@group.Students.SingleOrDefault(s => s.Id == group.HeadManId)?.FullName</p>
+    <p>Students</p>
+    foreach (var student in group.Students)
+    {
+        <p>@student.FullName</p>
+    }
+    <form method="post">
+        <button asp-page-handler="delete">Delete</button>
+        <input type="hidden" name="groupId" value="@group.Id"/>
+    </form>
+    <form method="post">
+        <button asp-page-handler="Edit">Edit</button>
+        <input type="hidden" name="groupId" value="@group.Id"/>
+    </form>
+}

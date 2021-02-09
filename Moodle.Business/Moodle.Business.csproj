@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Moodle.Core\Moodle.Core.csproj" />
+      <ProjectReference Include="..\Moodle.Data\Moodle.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common" />
+    </ItemGroup>
+
+</Project>

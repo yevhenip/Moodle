@@ -1,0 +1,26 @@
+﻿@page "/EditGroup/{groupId}"
+@model EditGroup
+
+<form method="post" asp-page-handler="edit">
+    <label asp-for="GroupModel.Name">Name</label>
+    <input asp-for="GroupModel.Name" value="@Model.Group.Name"/>
+    <span asp-validation-for="GroupModel.Name"></span>
+
+    <label asp-for="GroupModel.Class">Class</label>
+    <input asp-for="GroupModel.Class" value="@Model.Group.Class"/>
+    <span asp-validation-for="GroupModel.Class"></span>
+
+    <label asp-for="GroupModel.StudentIds">Select Students</label>
+    <select asp-for="GroupModel.StudentIds" asp-items="Model.Students" multiple="multiple"></select>
+    <span asp-validation-for="GroupModel.StudentIds"></span>
+
+    <label asp-for="GroupModel.HeadManId">Select Headman</label>
+    <select asp-for="GroupModel.HeadManId" asp-items="Model.StudentsForHeadMan"></select>
+    <span asp-validation-for="GroupModel.HeadManId"></span>
+
+    <label asp-for="GroupModel.SuperVisorId">Select Supervisor</label>
+    <select asp-for="GroupModel.SuperVisorId" asp-items="Model.Teachers"></select>
+
+    <input type="submit">
+    <div asp-validation-summary="All"></div>
+</form>
