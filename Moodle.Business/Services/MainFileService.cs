@@ -28,10 +28,9 @@ namespace Moodle.Business.Services
 
         public async Task AddMainFilesAsync(IEnumerable<IFile> files, string webRootPath)
         {
-            //TODO: MAKE WINDOWS TO BE A SLAVE AND FIX ACCESS DENIED ISSUE
             foreach (var file in files)
             {
-                await using var fileStream = new FileStream(webRootPath + @"\files\mainFiles", FileMode.CreateNew);
+                await using var fileStream = File.Create(webRootPath + @"\files\mainFiles\" + file.FileName);
                 await file.CopyToAsync(fileStream);
             }
         }
