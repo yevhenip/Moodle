@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -49,6 +50,23 @@ namespace Moodle.Web.Pages.AdminPanel
             Users = TempData.Get<List<User>>("Users");
 
             await _userService.DeleteUser(userId, Users);
+            ModelState.Clear();
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAssignAsync(string userId)
+        {
+            Users = TempData.Get<List<User>>("Users");
+            var role = Request.Form["role"].ToString();
+            Users.Single(u => u.Id == userId).UserType = role;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is Student student)
+            {
+                student.GroupId = null;
+            }
+
+            user.UserType = role;
+            await _userManager.UpdateAsync(user);
             ModelState.Clear();
             return Page();
         }
