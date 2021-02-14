@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Moodle.Core.Dtos;
-using Moodle.Core.Interfaces.Data.Repositiries;
+using Moodle.Core.Interfaces.Data.Repositories;
 using Moodle.Core.Interfaces.Services;
 using Moodle.Domain;
 
@@ -26,6 +26,15 @@ namespace Moodle.Business.Services
             var groups = groupsFromDb.Select(gfd =>
                 new GroupDto(gfd.Id, gfd.Name, gfd.Class, gfd.SuperVisor, gfd.HeadManId, gfd.Students));
             return groups.ToList();
+        }
+
+        public async Task<List<GroupDto>> GetAllAsync()
+        {
+            var groupsFromDb = await _groupRepository.GetAllAsync();
+            var groups = groupsFromDb.Select(g => 
+                    new GroupDto(g.Id, g.Name, g.Class, null, g.HeadManId, null))
+                .ToList();
+            return groups;
         }
 
         public async Task CreateGroupAsync(CreateGroupDto group)
@@ -66,7 +75,7 @@ namespace Moodle.Business.Services
             {
                 errors.Add("Students list must contain a headman as well");
             }
-            
+
             return errors;
         }
 
@@ -117,7 +126,7 @@ namespace Moodle.Business.Services
                 await _userManager.UpdateAsync(student);
             }
         }
-        
+
         private async Task UpdateStudentsAsync(int groupId, IEnumerable<Student> students)
         {
             foreach (var student in students)

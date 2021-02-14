@@ -1,0 +1,17 @@
+﻿@page "/EditCourse/{courseId}"
+@model EditCourse
+
+<form method="post" asp-page-handler="edit">
+    <label asp-for="CourseModel.Name">Name</label>
+    <input asp-for="CourseModel.Name" value="@Model.Course.Name"/>
+    <span asp-validation-for="CourseModel.Name"></span>
+
+    <label asp-for="CourseModel.GroupId">Select Group</label>
+    <select asp-for="CourseModel.GroupId" asp-items="Model.Groups"></select>
+
+    <label asp-for="CourseModel.TeacherIds">Select Teachers</label>
+    <select asp-for="CourseModel.TeacherIds" asp-items="Model.Teachers" multiple></select>
+
+    <input type="submit">
+    <div asp-validation-summary="All"></div>
+</form>

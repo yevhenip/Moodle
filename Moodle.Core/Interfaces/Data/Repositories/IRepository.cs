@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moodle.Core.Interfaces.Data.UnitOfWork;
 
-namespace Moodle.Core.Interfaces.Data.Repositiries
+namespace Moodle.Core.Interfaces.Data.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -26,7 +26,7 @@ namespace Moodle.Core.Interfaces.Data.Repositiries
 
         void Add(TEntity entity);
 
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
         void AddRange(IEnumerable<TEntity> entities);
 

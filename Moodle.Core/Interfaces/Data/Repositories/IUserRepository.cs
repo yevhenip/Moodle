@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Moodle.Domain;
 
-namespace Moodle.Core.Interfaces.Data.Repositiries
+namespace Moodle.Core.Interfaces.Data.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {

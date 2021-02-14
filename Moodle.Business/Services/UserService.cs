@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Moodle.Core.Interfaces.Data.Repositiries;
+using Moodle.Core.Interfaces.Data.Repositories;
 using Moodle.Core.Interfaces.Services;
 using Moodle.Domain;
 

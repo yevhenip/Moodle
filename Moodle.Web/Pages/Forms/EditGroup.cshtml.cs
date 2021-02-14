@@ -66,6 +66,8 @@ namespace Moodle.Web.Pages.Forms
                 GroupModel.HeadManId, GroupModel.StudentIds);
 
             await _groupService.UpdateGroup(Group, newGroup, GroupModel.StudentIds);
+            TempData.Clear();
+
             return Redirect("/adminPanel/groupPanel");
         }
 

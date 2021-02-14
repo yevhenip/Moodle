@@ -65,6 +65,7 @@ namespace Moodle.Web.Pages.AdminPanel
             }
 
             await AddGroup();
+            TempData.Clear();
 
             return Redirect("/adminPanel/groupPanel");
         }

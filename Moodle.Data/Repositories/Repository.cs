@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Moodle.Core.Interfaces.Data.Repositiries;
+using Moodle.Core.Interfaces.Data.Repositories;
 using Moodle.Core.Interfaces.Data.UnitOfWork;
 
 namespace Moodle.Data.Repositories
@@ -63,9 +63,10 @@ namespace Moodle.Data.Repositories
             Context.Set<TEntity>().Add(entity);
         }
 
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await Context.Set<TEntity>().AddAsync(entity);
+            var entityFromDb = await Context.Set<TEntity>().AddAsync(entity);
+            return entityFromDb.Entity;
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

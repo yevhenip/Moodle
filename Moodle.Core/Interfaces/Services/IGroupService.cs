@@ -7,6 +7,7 @@ namespace Moodle.Core.Interfaces.Services
     public interface IGroupService
     {
         Task<List<GroupDto>> GetGroupsWithAllPropertiesAsync();
+        Task<List<GroupDto>> GetAllAsync();
         Task CreateGroupAsync(CreateGroupDto group);
         public List<string> FindErrors(CheckGroup checkGroup, IEnumerable<GroupDto> groups);
         Task RemoveGroupAsync(int groupId);

@@ -11,6 +11,8 @@ namespace Moodle.Business.Extensions
             services.AddScoped<IMainFileService, MainFileService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGroupService, GroupService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ITeacherCourseService, TeacherCourseService>();
         }
     }
 }

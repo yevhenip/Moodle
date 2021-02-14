@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Moodle.Core.Interfaces.Data.Repositiries;
+using Moodle.Core.Interfaces.Data.Repositories;
 using Moodle.Data.Repositories;
 
 namespace Moodle.Data.Extensions
@@ -18,6 +18,8 @@ namespace Moodle.Data.Extensions
         {
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ITeacherCourseRepository, TeacherCourseRepository>();
         }
     }
 }

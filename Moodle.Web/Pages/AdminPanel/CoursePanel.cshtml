@@ -1,0 +1,35 @@
+﻿@page
+@model CoursePanel
+
+<form method="post" asp-page-handler="create">
+    <label asp-for="Course.Name">Name</label>
+    <input asp-for="Course.Name">
+    <span asp-validation-for="Course.Name"></span>
+
+    <label asp-for="Course.GroupId">Select Group</label>
+    <select asp-for="Course.GroupId" asp-items="Model.Groups"></select>
+
+    <label asp-for="Course.TeacherIds">Select Teachers</label>
+    <select asp-for="Course.TeacherIds" asp-items="Model.Teachers" multiple></select>
+    <div asp-validation-summary="All"></div>
+    <input type="submit">
+</form>
+
+@foreach (var course in Model.Courses)
+{
+    <h2>@course.Name</h2>
+    <p>@course.Group.Name</p>
+    <p>Teachers</p>
+    foreach (var teacher in course.Teachers)
+    {
+        <p>@teacher.Teacher.FullName</p>
+    }
+    <form method="post">
+        <button asp-page-handler="delete">Delete</button>
+        <input type="hidden" name="courseId" value="@course.Id"/>
+    </form>
+    <form method="post">
+        <button asp-page-handler="Edit">Edit</button>
+        <input type="hidden" name="courseId" value="@course.Id"/>
+    </form>
+}

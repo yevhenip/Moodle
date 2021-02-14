@@ -59,6 +59,8 @@ namespace Moodle.Web.Pages.AdminPanel
         {
             var files = FormFiles.Select(file => new FileAdapter(file));
             await _fileService.AddMainFilesAsync(files, _webRootPath);
+            TempData.Clear();
+
             return Redirect("/adminPanel/mainFilePanel");
         }
 

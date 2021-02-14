@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Moodle.Core.Interfaces.Data.Repositiries;
+using Moodle.Core.Interfaces.Data.Repositories;
 using Moodle.Domain;
 
 namespace Moodle.Data.Repositories
